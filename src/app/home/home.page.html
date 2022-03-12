@@ -13,8 +13,11 @@
     </ion-toolbar>
   </ion-header>
 
+  <button (click)="BTon()">Buscar</button>
+
 <div *ngFor="let data of Devices">
   <p>{{data.name}} </p>
 
+  <button (click)="connect(data.address)">Conectar</button>
 </div>
 </ion-content>
