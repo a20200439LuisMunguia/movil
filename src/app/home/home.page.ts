@@ -14,18 +14,48 @@ Devices
   BTon(){
     this.bluetootSerial.isEnabled().then(Response=>{
       this.isEnabled("Bluetooth encendido");
-      this.Listevices()
+      this.Listdevices()
     },error=>{
       this.isEnabled("Bluetooth apagado")
     })
   }
 
-  Listevices(){
-    this.bluetootSerial.list(),then(response=>{
-      this.Devices :response
+  Listdevices(){
+    this.bluetootSerial.list().then(response=>{
+      this.Devices=response
     },error =>{
       console.log("error")
     })
+  }
+
+  connect(address){
+    this.bluetootSerial.connect(address).subscribe(success=>{
+      console.log("Conectando")
+    },error=>{
+      console.log("Error")
+    });
+  }
+
+  deviceConnect(){
+    this.bluetootSerial.subscribe('/n').subscribe(success=>{
+      this.hundler(success)
+    })
+  }
+
+  hundler(value){
+    console.log("value")
+  }
+
+  sebData(){
+    this.bluetootSerial.write("7").then(Response=>{
+      console.log("listo")
+    },error=>{
+      console.log("Ocurriop un probglema")
+    })
+  }
+  Disconnected(){
+    this.bluetootSerial.disconnect()
+    console.log("Device disconnected")
   }
 
   async isEnabled(msg){
