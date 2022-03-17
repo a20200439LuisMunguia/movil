@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Cocina
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,15 +9,33 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="Cocina">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
+<div id="btdata">
+  <button mat-raised-button color="primary" (click)="BTon()">Buscar<mat-icon>bluetooth_searching</mat-icon></button>
+  <button id="listoff" (click)="listoff()"><mat-icon>keyboard_arrow_up</mat-icon></button>
 
-  <button (click)="BTon()">Buscar</button>
-
-<div *ngFor="let data of Devices">
-  <p>{{data.name}} </p>
-
-  <button (click)="connect(data.address)">Conectar</button>
+<div id="bt">
+    <div *ngFor="let data of Devices" [hidden]="ishidden">
+      <p>{{data.name}}
+      <button mat-raised-button color="accent" (click)="connect(data.address)" [disabled]="isDiabled2">Conectar:<mat-icon>bluetooth_connected</mat-icon></button>
+      <button mat-raised-button color="warn" (click)="Disconnected()" [disabled]="isDiabled1">Desconectar<mat-icon>bluetooth_disabled</mat-icon></button>
+    </p>
+    </div>
+  </div>
 </div>
+    <ion-text id="afor">
+      <p>
+        Afore:2/8
+      </p>
+    </ion-text>
+
+    <div id="asper">
+      <h3>Aspersores: </h3>
+      <div>
+        <button mat-raised-button color="accent" (click)="prender()">Encendido</button>
+        <button mat-raised-button color="warn" (click)="apagar()">Apagado</button>
+      </div>
+    </div>
 </ion-content>
